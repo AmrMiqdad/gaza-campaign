@@ -15,7 +15,6 @@
       color: white;
       padding: 30px 0;
       text-align: center;
-      position: relative;
     }
     header h1 {
       margin: 0;
@@ -60,19 +59,6 @@
     .donate-btn:hover {
       background-color: #e67e22;
     }
-    .grid-section {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-      flex-direction: column;
-    }
-    .grid-item {
-      background-color: #333;
-      padding: 15px;
-      border-radius: 10px;
-      margin-bottom: 15px;
-      text-align: center;
-    }
     .horizontal-section {
       display: flex;
       justify-content: space-between;
@@ -96,6 +82,39 @@
       color: #aaa;
       margin-top: 30px;
     }
+    .news-item {
+      background-color: #333;
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      text-align: right;
+      border-top: 1px solid #f39c12;
+    }
+    .news-item:first-child {
+      border-top: none;
+    }
+    .news-item img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      margin: 10px 0;
+    }
+    #load-more {
+      padding: 12px 30px;
+      background-color: #f39c12;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      margin: 15px auto 20px auto;
+      display: block;
+      font-size: 16px;
+      transition: background 0.3s;
+      max-width: 200px;
+    }
+    #load-more:hover {
+      background-color: #e67e22;
+    }
     ul {
       padding-right: 20px;
       text-align: right;
@@ -103,30 +122,12 @@
     ul li {
       margin-bottom: 10px;
     }
-    img.news-img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 8px;
-      margin: 10px 0;
-    }
-    #news2 {
-      display: none;
-      text-align: justify;
-    }
     @media (max-width: 600px) {
       .horizontal-section {
         flex-direction: column;
       }
       .horizontal-section > div {
         flex: 1 1 100%;
-      }
-      header .donate-top-btn {
-        position: static;
-        display: block;
-        width: 100%;
-        margin: 15px 0 0 0;
-        transform: none;
-        font-size: 18px;
       }
     }
   </style>
@@ -153,33 +154,16 @@
       <a href="https://www.gofundme.com/f/stand-with-gazas-children-hunger-and-pain-must-end" target="_blank" class="donate-btn">Donate Now</a>
     </div>
 
-    <div class="section grid-section">
-      <div class="grid-item">
-        <h2>Campaign Posts</h2>
-        <p>Photos, videos, and updates from donors and supporters.</p>
-        <button class="donate-btn" style="background-color:#636e72;">View Posts</button>
-      </div>
-      <div class="grid-item">
-        <h2>Gaza News</h2>
-        <div id="news1">
-          <img class="news-img" src="https://www.aljazeera.net/wp-content/uploads/2025/05/6%D8%BA%D9%81%D8%A8-1747326759.jpg?resize=770%2C513&quality=80" alt="News 1">
-          <p style="text-align: justify;">
-            Children are facing severe food deprivation. The Integrated Food Security Phase Classification (IPC) report predicts that renewed military operations, the ongoing full blockade, and the severe shortage of essential life-saving supplies will drive food insecurity, acute malnutrition, and mortality levels beyond famine thresholds over the next five months.<br><br>
-            The report, issued by 17 United Nations agencies and non-governmental organizations, indicated that the vast majority of children in Gaza are experiencing severe food deprivation. Rapid increases in acute malnutrition are expected in the governorates of North Gaza, Gaza, and Rafah, alongside limited access to health services and a severe shortage of clean water and sanitation.
-          </p>
-        </div>
-        <div id="news2">
-          <img class="news-img" src="https://global.unitednations.entermediadb.net/assets/mediadb/services/module/asset/downloads/preset/Libraries/Production%20Library/07-05-2025-UN-News-Gaza-Hunger2.JPG/image1170x530cropped.jpg" alt="News 2">
-          <p style="text-align: justify;">
-            <strong>"Famine does not come suddenly"</strong><br>
-            UNICEF Executive Director Catherine Russell stated:<br>
-            <em>"The risk of famine does not come suddenly. It unfolds in places where access to food is blocked, where health systems are destroyed, and where children are left without the minimum needed to survive. Hunger and acute malnutrition are a daily reality for children across the Gaza Strip. We have repeatedly warned about this path and once again call on all parties to prevent a catastrophe."</em><br><br>
-            Border crossings into Gaza have been closed for over two months—the longest closure ever faced by the population—causing food prices in the markets to skyrocket and making the little food available far beyond the reach of most families.<br><br>
-            Meanwhile, more than 116,000 metric tons of food aid—enough to feed one million people for up to four months—are sitting outside Gaza, ready to enter. There are also hundreds of shipments of life-saving nutritional treatments.
-          </p>
-        </div>
-        <button class="donate-btn" onclick="document.getElementById('news2').style.display='block'; this.style.display='none';" style="margin-top: 10px; background-color:#636e72;">عرض المزيد</button>
-      </div>
+    <div class="section">
+      <h2>Campaign Posts</h2>
+      <p>Photos, videos, and updates from donors and supporters.</p>
+      <button class="donate-btn" style="background-color:#636e72;">View Posts</button>
+    </div>
+
+    <div class="section">
+      <h2>Gaza News</h2>
+      <div id="news-container"></div>
+      <!-- The button will be inserted dynamically after first news -->
     </div>
 
     <div class="horizontal-section">
@@ -201,7 +185,7 @@
       <p>WhatsApp: +97056716577</p>
       <p>
         <a href="https://wa.me/970567165877" target="_blank" style="color: #25D366; text-decoration: none;">
-          📱 اضغط هنا للتواصل على WhatsApp
+          📱 Click here to contact on WhatsApp
         </a>
       </p>
     </div>
@@ -212,6 +196,7 @@
   </footer>
 
   <script>
+    // About campaign read more toggle
     const fullText = document.getElementById('campaign-text').textContent;
     const toggleBtn = document.getElementById('toggleTextBtn');
     const previewLength = 70;
@@ -236,6 +221,7 @@
       showingFull = !showingFull;
     });
 
+    // Countdown timer
     function startCountdown(endDate) {
       const countdownEl = document.getElementById('countdown');
       const timer = setInterval(() => {
@@ -254,8 +240,82 @@
         }
       }, 1000);
     }
-    const sixtyDaysFromNow = new Date().getTime() + (60 * 24 * 60 * 60 * 1000) + (10 * 60 * 60 * 1000);
+    const sixtyDaysFromNow = new Date().getTime() + (60 * 24 * 60 * 60 * 1000);
     startCountdown(sixtyDaysFromNow);
+
+    // News data: oldest first
+    const newsData = [
+      {
+        title: "New Israeli Evacuation Orders",
+        image: "https://images.alwatanvoice.com/news/images/539e44fd-3d25-4d0f-9b6f-3afcef56e354.jpg",
+        content: `Israel issued new evacuation orders and continued its military operation in Gaza on Monday, after agreeing to lift the siege ongoing for over two months and deliver food aid to the sector.
+
+The Israeli army issued a "severe warning" to residents of Khan Younis governorate, specifically in Bani Suheila and Abasan areas, demanding immediate evacuation westward towards the Al-Mawasi area in preparation for what was described as an "unprecedented" attack.
+
+The army posted: "The army will launch an unprecedented attack to destroy terrorist organizations' capabilities in this area. You must evacuate immediately westward to Al-Mawasi area."
+
+It added: "From this moment on, Khan Younis governorate will be considered a dangerous combat zone. Terrorist organizations brought disaster upon you; for your safety, evacuate immediately."
+
+The army published a map of Gaza Strip highlighting in red the area to be evacuated, writing: "Dangerous combat zone."`
+      },
+      {
+        title: "Severe Food Deprivation Among Children",
+        image: "https://alroya.om/uploads/images/2023/10/oxox9.jpeg",
+        content: `Children are facing severe food deprivation. The Integrated Food Security Phase Classification (IPC) report predicts that renewed military operations, the ongoing full blockade, and the severe shortage of essential life-saving supplies will drive food insecurity, acute malnutrition, and mortality levels beyond famine thresholds over the next three months.
+
+An estimated 1.1 million people in Gaza are facing acute food insecurity, and 670,000 children are expected to suffer from wasting due to severe malnutrition in the coming months. The deterioration of children's health is compounded by the destruction of health services, water, sanitation, and hygiene infrastructure caused by the ongoing conflict.`
+      },
+      {
+        title: "Famine Warning in Gaza",
+        image: "https://global.unitednations.entermediadb.net/assets/mediadb/services/module/asset/downloads/preset/Libraries/Production%20Library/07-05-2025-UN-News-Gaza-Hunger2.JPG/image1170x530cropped.jpg",
+        content: `UNICEF Executive Director Catherine Russell stated that Gaza is facing a famine crisis due to ongoing conflict and blockade, leading to acute shortages of food and medicine. Immediate action and humanitarian aid are urgently needed to prevent widespread suffering and death, particularly among children and vulnerable populations.`
+      }
+    ];
+
+    const newsContainer = document.getElementById('news-container');
+    const loadMoreBtn = document.createElement('button');
+    loadMoreBtn.id = 'load-more';
+    loadMoreBtn.textContent = 'Show More';
+
+    let currentIndex = 1; // Start after first news item shown
+    // Show first news item only initially
+    function createNewsItem(item, index, total) {
+      const div = document.createElement('div');
+      div.className = 'news-item';
+
+      // Numbering: last news has number 1, first news has number total
+      const newsNumber = total - index;
+
+      div.innerHTML = `
+        <h3>News #${newsNumber}: ${item.title}</h3>
+        <img src="${item.image}" alt="${item.title}" />
+        <p>${item.content}</p>
+      `;
+      return div;
+    }
+
+    // Show first news only, then add Show More button
+    function initNews() {
+      const totalNews = newsData.length;
+      // Show last news first (newsData is oldest first, so last element is newest)
+      const firstNewsIndex = totalNews - 1;
+      const firstNews = createNewsItem(newsData[firstNewsIndex], firstNewsIndex, totalNews);
+      newsContainer.appendChild(firstNews);
+      newsContainer.appendChild(loadMoreBtn);
+    }
+
+    // On clicking load more show remaining news (in reverse order after first)
+    loadMoreBtn.addEventListener('click', () => {
+      const totalNews = newsData.length;
+      for (let i = totalNews - 2; i >= 0; i--) {
+        const newsItem = createNewsItem(newsData[i], i, totalNews);
+        newsContainer.appendChild(newsItem);
+      }
+      loadMoreBtn.style.display = 'none';
+    });
+
+    initNews();
+
   </script>
 </body>
 </html>
