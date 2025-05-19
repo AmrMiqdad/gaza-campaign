@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>Warmth of Gaza's Children</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Cairo', sans-serif;
+      background-color: #1e1e1e;
+      color: #f1f1f1;
+    }
+    header {
+      background-color: #111;
+      color: white;
+      padding: 30px 0;
+      text-align: center;
+      position: relative;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 32px;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 30px auto;
+      padding: 20px;
+      background-color: #2c2c2c;
+      border-radius: 12px;
+    }
+    .banner {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+    .banner img {
+      width: 100%;
+      border-radius: 12px;
+      max-height: 350px;
+      object-fit: cover;
+    }
+    .section {
+      margin-bottom: 25px;
+    }
+    .section h2 {
+      color: #f39c12;
+      margin-bottom: 10px;
+    }
+    .donate-btn {
+      display: inline-block;
+      padding: 12px 30px;
+      background-color: #f39c12;
+      color: white;
+      font-size: 18px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+    .donate-btn:hover {
+      background-color: #e67e22;
+    }
+    .grid-section {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      flex-direction: column;
+    }
+    .grid-item {
+      background-color: #333;
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+    .horizontal-section {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 25px;
+      align-items: center;
+    }
+    .horizontal-section > div {
+      background-color: #333;
+      padding: 15px;
+      border-radius: 10px;
+      flex: 1 1 300px;
+      text-align: center;
+    }
+    footer {
+      text-align: center;
+      background-color: #111;
+      padding: 15px;
+      font-size: 14px;
+      color: #aaa;
+      margin-top: 30px;
+    }
+    ul {
+      padding-right: 20px;
+      text-align: right;
+    }
+    ul li {
+      margin-bottom: 10px;
+    }
+    img.news-img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      margin: 10px 0;
+    }
+    #news2 {
+      display: none;
+      text-align: justify;
+    }
+    @media (max-width: 600px) {
+      .horizontal-section {
+        flex-direction: column;
+      }
+      .horizontal-section > div {
+        flex: 1 1 100%;
+      }
+      header .donate-top-btn {
+        position: static;
+        display: block;
+        width: 100%;
+        margin: 15px 0 0 0;
+        transform: none;
+        font-size: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Warmth of Gaza's Children</h1>
+  </header>
+
+  <div class="container">
+    <div class="banner">
+      <img src="https://cdnuploads.aa.com.tr/uploads/Contents/2024/02/09/thumbs_b_c_3ed4e0ce67a95f9e015f8d997577a1cc.jpg?v=104657" alt="Campaign image" />
+    </div>
+
+    <div class="section">
+      <h2>About the Campaign</h2>
+      <p id="campaign-text" style="line-height: 1.6; text-align: justify;">
+        In Gaza, where children suffer from hunger and cold, and women try to protect their kids from the loud bombing, innocence is stolen and families are displaced in the darkness of war and siege. In this broken place, families face unbearable scenes of hunger, thirst, and death approaching every moment. This campaign is not just a call for donations, but a heartfelt plea from one heart to another for those who have lost hope. We stand today with Gaza’s children who don’t know safe sleep, and with mothers who cry helplessly for their kids. Your donation gives them life, a bite to ease a hungry child, a warmth that touches a mother's heart begging for survival. Let’s open our hearts to their pain and be the helping hand holding every needy person’s hand, painting a better future where children laugh without fear and families live in safety and peace. Every moment of delay means more pain, so be part of this message and make a real difference in the life of a person waiting for your love and generosity.
+      </p>
+      <button id="toggleTextBtn" class="donate-btn" style="margin-top: 10px;">Read More</button>
+    </div>
+
+    <div class="section" style="text-align: center; margin-bottom: 20px;">
+      <a href="https://www.gofundme.com/f/stand-with-gazas-children-hunger-and-pain-must-end" target="_blank" class="donate-btn">Donate Now</a>
+    </div>
+
+    <div class="section grid-section">
+      <div class="grid-item">
+        <h2>Campaign Posts</h2>
+        <p>Photos, videos, and updates from donors and supporters.</p>
+        <button class="donate-btn" style="background-color:#636e72;">View Posts</button>
+      </div>
+      <div class="grid-item">
+        <h2>Gaza News</h2>
+        <div id="news1">
+          <img class="news-img" src="https://www.aljazeera.net/wp-content/uploads/2025/05/6%D8%BA%D9%81%D8%A8-1747326759.jpg?resize=770%2C513&quality=80" alt="News 1">
+          <p style="text-align: justify;">
+            Children are facing severe food deprivation. The Integrated Food Security Phase Classification (IPC) report predicts that renewed military operations, the ongoing full blockade, and the severe shortage of essential life-saving supplies will drive food insecurity, acute malnutrition, and mortality levels beyond famine thresholds over the next five months.<br><br>
+            The report, issued by 17 United Nations agencies and non-governmental organizations, indicated that the vast majority of children in Gaza are experiencing severe food deprivation. Rapid increases in acute malnutrition are expected in the governorates of North Gaza, Gaza, and Rafah, alongside limited access to health services and a severe shortage of clean water and sanitation.
+          </p>
+        </div>
+        <div id="news2">
+          <img class="news-img" src="https://global.unitednations.entermediadb.net/assets/mediadb/services/module/asset/downloads/preset/Libraries/Production%20Library/07-05-2025-UN-News-Gaza-Hunger2.JPG/image1170x530cropped.jpg" alt="News 2">
+          <p style="text-align: justify;">
+            <strong>"Famine does not come suddenly"</strong><br>
+            UNICEF Executive Director Catherine Russell stated:<br>
+            <em>"The risk of famine does not come suddenly. It unfolds in places where access to food is blocked, where health systems are destroyed, and where children are left without the minimum needed to survive. Hunger and acute malnutrition are a daily reality for children across the Gaza Strip. We have repeatedly warned about this path and once again call on all parties to prevent a catastrophe."</em><br><br>
+            Border crossings into Gaza have been closed for over two months—the longest closure ever faced by the population—causing food prices in the markets to skyrocket and making the little food available far beyond the reach of most families.<br><br>
+            Meanwhile, more than 116,000 metric tons of food aid—enough to feed one million people for up to four months—are sitting outside Gaza, ready to enter. There are also hundreds of shipments of life-saving nutritional treatments.
+          </p>
+        </div>
+        <button class="donate-btn" onclick="document.getElementById('news2').style.display='block'; this.style.display='none';" style="margin-top: 10px; background-color:#636e72;">عرض المزيد</button>
+      </div>
+    </div>
+
+    <div class="horizontal-section">
+      <div id="countdown-section">
+        <h2>Time Left for Campaign:</h2>
+        <p id="countdown">--:--:--</p>
+      </div>
+      <div id="incentive-section">
+        <h2>Donor Incentive:</h2>
+        <p style="text-align: justify;">
+          As a token of our gratitude to everyone supporting this humanitarian campaign, we will be holding a special draw exclusively for our donors. One winner will be randomly selected and contacted via email — and the prize? 10% of the total amount raised during the entire campaign!<br><br>
+          It’s our way of saying thank you and showing that every contribution makes a difference — and might even come back to you as a meaningful gesture of appreciation. Don’t miss the chance to give and possibly receive.
+        </p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Contact & Support:</h2>
+      <p>WhatsApp: +97056716577</p>
+      <p>
+        <a href="https://wa.me/970567165877" target="_blank" style="color: #25D366; text-decoration: none;">
+          📱 اضغط هنا للتواصل على WhatsApp
+        </a>
+      </p>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 Charity Donation Campaign - All rights reserved
+  </footer>
+
+  <script>
+    const fullText = document.getElementById('campaign-text').textContent;
+    const toggleBtn = document.getElementById('toggleTextBtn');
+    const previewLength = 70;
+
+    function previewText(text, wordCount) {
+      const words = text.split(' ');
+      if (words.length <= wordCount) return text;
+      return words.slice(0, wordCount).join(' ') + '...';
+    }
+
+    let showingFull = false;
+    document.getElementById('campaign-text').textContent = previewText(fullText, previewLength);
+
+    toggleBtn.addEventListener('click', () => {
+      if (showingFull) {
+        document.getElementById('campaign-text').textContent = previewText(fullText, previewLength);
+        toggleBtn.textContent = 'Read More';
+      } else {
+        document.getElementById('campaign-text').textContent = fullText;
+        toggleBtn.textContent = 'Read Less';
+      }
+      showingFull = !showingFull;
+    });
+
+    function startCountdown(endDate) {
+      const countdownEl = document.getElementById('countdown');
+      const timer = setInterval(() => {
+        const now = new Date().getTime();
+        const distance = endDate - now;
+
+        if (distance < 0) {
+          clearInterval(timer);
+          countdownEl.textContent = 'Campaign Ended';
+        } else {
+          const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+          const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+          const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+          countdownEl.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+        }
+      }, 1000);
+    }
+    const sixtyDaysFromNow = new Date().getTime() + (60 * 24 * 60 * 60 * 1000) + (10 * 60 * 60 * 1000);
+    startCountdown(sixtyDaysFromNow);
+  </script>
+</body>
+</html>
